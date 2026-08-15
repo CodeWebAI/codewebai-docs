@@ -1,0 +1,67 @@
+site_name: CodeWebAI Documentation
+site_description: Documentación técnica y proyectos de CodeWebAI
+site_author: CodeWebAI
+repo_name: CodeWebAI
+repo_url: https://github.com/CodeWebAI/codewebai-docs
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo claro
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+
+
+# Definición del menú de navegación
+nav:
+  - Inicio: index.md
+
+  - Desarrollo:
+      - Índice: primeros-pasos/index.md
+      - Instalación de Python y Pip: primeros-pasos/python-pip.md
+      - Instalación de MkDocs: primeros-pasos/instalacion-mkdocs.md
+      - Configuración de Entorno: primeros-pasos/entorno-local.md
+
+  - Estándares:
+      - Índice: estandares/index.md
+      - Flujo de Git: estandares/flujo-git.md
+      - Despliegues & Servidores: estandares/despliegues-y-servidores.md
+      - Buenas Prácticas: estandares/practicas.md
+
+  - Proyectos:
+      - Índice: proyectos/index.md
+      - Productos:
+          - Educheck: proyectos/Productos/educheck.md
+      - Clientes:
+          - Mariachi Noche Mexicana: proyectos/clientes/mariachi-noche.md
+  
+  - Helpdesk:
+      - Índice: helpdesk/index.md
