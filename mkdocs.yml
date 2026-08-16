@@ -1,7 +1,7 @@
 site_name: CodeWebAI Documentation
 site_description: Documentación técnica y proyectos de CodeWebAI
 site_author: CodeWebAI
-repo_name: CodeWebAI
+repo_name: codewebai-docs
 repo_url: https://github.com/CodeWebAI/codewebai-docs
 
 theme:
@@ -38,7 +38,8 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.tabbed:
       alternate_style: true
-
+  - attr_list
+  - md_in_html
 
 # Definición del menú de navegación
 nav:
@@ -62,6 +63,6 @@ nav:
           - Educheck: proyectos/Productos/educheck.md
       - Clientes:
           - Mariachi Noche Mexicana: proyectos/clientes/mariachi-noche.md
-  
+
   - Helpdesk:
       - Índice: helpdesk/index.md
