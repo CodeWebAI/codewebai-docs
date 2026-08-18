@@ -30,6 +30,8 @@ theme:
         name: Cambiar a modo claro
   icon:
     repo: fontawesome/brands/github
+  logo: assets/img/logoCWAI.svg
+  favicon: assets/img/logoCWAI.svg
 
 markdown_extensions:
   - admonition
@@ -49,7 +51,6 @@ nav:
       - Índice: primeros-pasos/index.md
       - Instalación de Python y Pip: primeros-pasos/python-pip.md
       - Instalación de MkDocs: primeros-pasos/instalacion-mkdocs.md
-      - Configuración de Entorno: primeros-pasos/entorno-local.md
 
   - Estándares:
       - Índice: estandares/index.md
