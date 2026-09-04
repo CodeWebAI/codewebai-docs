@@ -27,7 +27,7 @@ Para evitar ensuciar el entorno global de tu sistema operativo y prevenir "depen
 
 ### Windows
 
-Abre tu terminal (PowerShell o CMD) en la raíz del proyecto y ejecuta:
+Abre tu terminal (PowerShell, CMD o Git bash) en la raíz del proyecto y ejecuta:
 ```
 # Crear el entorno virtual
 python -m venv venv

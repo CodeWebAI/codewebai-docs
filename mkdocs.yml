@@ -46,16 +46,18 @@ markdown_extensions:
 # Definición del menú de navegación
 nav:
   - Inicio: index.md
-
+ 
   - Desarrollo:
       - Índice: primeros-pasos/index.md
       - Instalación de Python y Pip: primeros-pasos/python-pip.md
       - Instalación de MkDocs: primeros-pasos/instalacion-mkdocs.md
+      - Incidencias y Solucion de Errores: primeros-pasos/incidencias-solucion.md
 
   - Estándares:
       - Índice: estandares/index.md
       - Flujo de Git: estandares/flujo-git.md
       - Despliegues & Servidores: estandares/despliegues-y-servidores.md
+      - Extensiones: estandares/extensiones.md
       - Buenas Prácticas: estandares/practicas.md
 
   - Proyectos:
@@ -67,3 +69,4 @@ nav:
 
   - Helpdesk:
       - Índice: helpdesk/index.md
+   
