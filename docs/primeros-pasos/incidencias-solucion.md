@@ -5,14 +5,15 @@ Durante la configuración inicial del entorno de desarrollo de CodeWebAI pueden 
 Este apartado tiene como objetivo documentar las principales incidencias y problemas identificadas durante la preparación del entorno de desarrollo, indicando la situación presentada, su posible causa, la solución aplicada y el resultado obtenido.
 
 La documentación de estas incidencias permite facilitar la configuración de nuevos entornos de trabajo y proporcionar una referencia para la resolución de problemas similares.
-La aplicacion de configuracion se dio en un sistema operativo Windows.   
+La aplicacion de configuracion se dio en un sistema operativo Windows.  
+
 ## Python/Pip y configuración del entorno de desarrollo.
 
 Error de pip al intentar instalar una dependencia
 Cuando intentamos instalar una dependencia o material de MKDocs regularmente se utilizan el comando.
 
 
-## 1. Error de `pip` al instalar dependencias
+## 1. Error de **pip** al instalar dependencias
 
 ``` pip install mkdocs-material 
 ``` y llega a aparecer este error
@@ -49,7 +50,7 @@ Y posteriormente, se intentó activar el entorno mediante:
 
 Sin embargo, te muestra el siguiente mensaje:
 
-bash: ```venv/Scripts/activate: No such file or directory```
+```venv/Scripts/activate: No such file or directory```
 
 Esto indicó que Git Bash no encontró el archivo necesario para activar el entorno virtual en la ubicación especificada.
 
@@ -63,13 +64,19 @@ Para evitar continuar trabajando con un entorno que no podía ser activado corre
 
 Se creó un nuevo entorno virtual con el siguiente comando:
 
-```py -m venv .venv```
+```
+py -m venv .venv
+
+```
 
 El entorno se creó utilizando el nombre (.venv), que es una convención común para identificar el entorno virtual asociado a un proyecto.
 
 Entonces se debe  activó mediante:
 
-```source .venv/Scripts/activate```
+```
+source .venv/Scripts/activate
+
+```
 
 Si Git Bash mostró (.venv) al inicio de la línea de comandos significa que fue correcta.
 
@@ -88,7 +95,10 @@ mkdocs serve
 ```
 Si MkDocs mostró el siguiente mensaje:
 
-```ERROR - Config value 'theme': Unrecognised theme name: 'material'.```
+```
+ERROR - Config value 'theme': Unrecognised theme name: 'material'.
+
+```
 
 El mensaje indica que MkDocs no pudo reconocer el tema material configurado en el proyecto.
 
@@ -106,11 +116,17 @@ Primero se verificó que el entorno virtual .venv estuviera activado.
 
 Posteriormente, se instaló el paquete de Material for MkDocs utilizando:
 
-```py -m pip install mkdocs-material```
+```
+py -m pip install mkdocs-material
+
+```
 
 Después de completar la instalación, se debe volver a ejecutar:
 
-```mkdocs serve```
+```
+mkdocs serve
+
+```
 
 
 Como resultado MkDocs pudo reconocer correctamente el  tema material y construir la documentación.
@@ -130,16 +146,15 @@ Se recomienda utilizar:
 `py -m pip install mkdocs-material`
 
 y posteriormente iniciar nuevamente el servidor con:
-```mkdocs serve
 ```
-### 📌 Importante 
+mkdocs serve
+
+```
+
+**📌 Importante** 
 Debemos aprender a distinguir **dos cosas diferentes**:
 
 - `mkdocs` → es el generador de la documentación.
 - `mkdocs-material` → es el paquete que proporciona el tema **Material** que utiliza tu proyecto.
 
 En la imagen se muestra una advertencia pero no es necesario realizar ningun cambio, mientras el proyecto actualice la  documentacion se puede trabajar asi. 
-
-
-
-

@@ -6,7 +6,7 @@ hide:
 
 # Bienvenidos a la Documentación de CodeWebAI
 
-![Cowi](assets/img/Cowi.jpeg){: width="960px"}
+![Cowi](assets/img/Cowi.jpeg){: width="860px"}
 
 El objetivo principal de este portal es centralizar, organizar y estandarizar todo el conocimiento técnico y operativo de **CodeWebAI**. 
 

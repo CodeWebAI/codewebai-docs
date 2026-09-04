@@ -30,10 +30,10 @@ Para evitar ensuciar el entorno global de tu sistema operativo y prevenir "depen
 Abre tu terminal (PowerShell, CMD o Git bash) en la raíz del proyecto y ejecuta:
 ```
 # Crear el entorno virtual
-python -m venv venv
+python -m venv .venv
 
 # Activar el entorno virtual
-.\venv\Scripts\activate
+source .venv/Scripts/activate
 ```
 
 ### MacOS / Linux
