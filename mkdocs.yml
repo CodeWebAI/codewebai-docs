@@ -5,33 +5,21 @@ repo_name: codewebai-docs
 repo_url: https://github.com/CodeWebAI/codewebai-docs
 
 theme:
-  name: material
+  name: mkdocs
+  custom_dir: theme
   language: es
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - toc.integrate
-    - content.code.copy
-  palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo
-      accent: blue
-      toggle:
-        icon: material/weather-night
-        name: Cambiar a modo oscuro
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: indigo
-      accent: cyan
-      toggle:
-        icon: material/weather-sunny
-        name: Cambiar a modo claro
-  icon:
-    repo: fontawesome/brands/github
   logo: assets/img/logoCWAI.svg
   favicon: assets/img/logoCWAI.svg
+
+plugins:
+  - search
+
+extra_css:
+  - assets/stylesheets/tailwind.css
+
+extra_javascript:
+  - assets/javascripts/theme.js
+  - assets/javascripts/search.js
 
 markdown_extensions:
   - admonition

@@ -1,0 +1,5 @@
+name: codewebai
+title: CodeWebAI Documentation
+version: 1.0.0
+include_search_page: false
+search_index_only: true

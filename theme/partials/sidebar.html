@@ -1,0 +1,22 @@
+<aside class="sidebar" id="site-sidebar" aria-label="Navegación del sitio">
+	<div class="sidebar-heading">Contenido</div>
+	<nav>
+		{% macro render_items(items) %}
+			<ul class="sidebar-list">
+				{% for item in items %}
+					<li>
+						{% if item.children %}
+							<details{% if item.active %} open{% endif %}>
+								<summary>{{ item.title }}</summary>
+								{{ render_items(item.children) }}
+							</details>
+						{% else %}
+							<a class="sidebar-link{% if item.active %} is-active{% endif %}" href="{{ item.url | url }}">{{ item.title }}</a>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endmacro %}
+		{{ render_items(nav.items) }}
+	</nav>
+</aside>
