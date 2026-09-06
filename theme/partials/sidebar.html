@@ -1,5 +1,4 @@
 <aside class="sidebar" id="site-sidebar" aria-label="Navegación del sitio">
-	<div class="sidebar-heading">Contenido</div>
 	<nav>
 		{% macro render_items(items) %}
 			<ul class="sidebar-list">
@@ -12,11 +11,44 @@
 							</details>
 						{% else %}
 							<a class="sidebar-link{% if item.active %} is-active{% endif %}" href="{{ item.url | url }}">{{ item.title }}</a>
+							{% if item.active and page and page.toc %}
+								{% set first_toc = (page.toc | first) if page.toc else none %}
+								{% set subtemas = first_toc.children if (first_toc and first_toc.children and first_toc.level == 1) else (page.toc if (page.toc and (page.toc | length > 1 or (first_toc and first_toc.level > 1))) else none) %}
+								{% if subtemas %}
+									<ul class="sidebar-sublist">
+										{% for h2 in subtemas %}
+											<li>
+												<a class="sidebar-sublink" href="{{ h2.url }}">{{ h2.title }}</a>
+												{% if h2.children %}
+													<ul class="sidebar-sublist-nested">
+														{% for h3 in h2.children %}
+															<li>
+																<a class="sidebar-sublink sidebar-sublink-nested" href="{{ h3.url }}">{{ h3.title }}</a>
+															</li>
+														{% endfor %}
+													</ul>
+												{% endif %}
+											</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+							{% endif %}
 						{% endif %}
 					</li>
 				{% endfor %}
 			</ul>
 		{% endmacro %}
-		{{ render_items(nav.items) }}
+		<ul class="sidebar-list">
+			{% for item in nav.items %}
+				{% if item.children and item.active %}
+					<li>
+						<details open>
+							<summary>{{ item.title }}</summary>
+							{{ render_items(item.children) }}
+						</details>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
 	</nav>
 </aside>

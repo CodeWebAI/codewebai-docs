@@ -31,4 +31,46 @@
 		});
 		block.append(button);
 	});
+
+	// Scrollspy para subtemas del sidebar
+	const sublinks = Array.from(document.querySelectorAll('.sidebar-sublink[href^="#"]'));
+	if (sublinks.length > 0) {
+		const headingTargets = sublinks.map(link => {
+			const id = decodeURIComponent(link.getAttribute('href').slice(1));
+			return {
+				link,
+				element: document.getElementById(id)
+			};
+		}).filter(item => item.element !== null);
+
+		function updateScrollspy() {
+			const threshold = 140;
+			const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 50);
+			let activeIndex = -1;
+
+			if (isAtBottom && headingTargets.length > 0) {
+				activeIndex = headingTargets.length - 1;
+			} else {
+				for (let i = 0; i < headingTargets.length; i++) {
+					const rect = headingTargets[i].element.getBoundingClientRect();
+					if (rect.top <= threshold) {
+						activeIndex = i;
+					} else {
+						break;
+					}
+				}
+			}
+
+			headingTargets.forEach((item, index) => {
+				if (index === activeIndex) {
+					item.link.classList.add('is-active');
+				} else {
+					item.link.classList.remove('is-active');
+				}
+			});
+		}
+
+		window.addEventListener('scroll', updateScrollspy, { passive: true });
+		updateScrollspy();
+	}
 }());

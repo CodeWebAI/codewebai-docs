@@ -131,7 +131,7 @@ En lugar de la etiqueta ancla `<a href="url">Texto</a>`:
 [Texto que el usuario leerá](https://enlace-destino.com)
 [Enlace a otra página interna](../estandares/index.md)
 ```
-Imágenes y Alineación (<img>)
+Imágenes y Alineación (`<img>`)
 
 La sintaxis básica para insertar una imagen es similar a la de los enlaces, pero precedida por un signo de exclamación !.
 
