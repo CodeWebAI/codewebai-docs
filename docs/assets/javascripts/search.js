@@ -5,7 +5,11 @@
 	if (!form || !input || !results) return;
 
 	let entries = [];
-	fetch(`${document.baseURI}search/search_index.json`)
+	const searchIndexUrl = form.dataset.searchIndex || `${form.dataset.baseUrl || '.'}/search/search_index.json`;
+	const rawBase = form.dataset.baseUrl || '';
+	const baseUrl = rawBase ? (rawBase.endsWith('/') ? rawBase : `${rawBase}/`) : '';
+
+	fetch(searchIndexUrl)
 		.then((response) => response.ok ? response.json() : Promise.reject())
 		.then((data) => { entries = data.docs || []; })
 		.catch(() => { entries = []; });
@@ -14,7 +18,11 @@
 		const normalized = query.trim().toLowerCase();
 		if (!normalized) { results.hidden = true; results.innerHTML = ''; return; }
 		const matches = entries.filter((entry) => `${entry.title} ${entry.text}`.toLowerCase().includes(normalized)).slice(0, 8);
-		results.innerHTML = matches.length ? matches.map((entry) => `<a class="search-result" href="${entry.location}"><span class="search-result-title">${entry.title}</span><span class="search-result-text">${entry.text || ''}</span></a>`).join('') : '<span class="search-result-text">Sin resultados</span>';
+		results.innerHTML = matches.length ? matches.map((entry) => {
+			const cleanLocation = (entry.location || '').replace(/^\//, '');
+			const href = `${baseUrl}${cleanLocation}`;
+			return `<a class="search-result" href="${href}"><span class="search-result-title">${entry.title}</span><span class="search-result-text">${entry.text || ''}</span></a>`;
+		}).join('') : '<span class="search-result-text">Sin resultados</span>';
 		results.hidden = false;
 	}
 

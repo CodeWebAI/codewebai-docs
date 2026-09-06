@@ -1,0 +1,34 @@
+<header class="site-header">
+	<div class="header-inner">
+		<a class="brand" href="{{ nav.homepage.url | url }}" aria-label="{{ config.site_name }}">
+			{% if config.theme.logo %}<img class="brand-logo" src="{{ config.theme.logo | url }}" alt="">{% endif %}
+			<span>{{ config.site_name }}</span>
+		</a>
+		<nav class="desktop-nav" aria-label="Navegación principal">
+			{% for nav_item in nav %}
+				{% if nav_item.children %}
+					<a class="nav-link{% if nav_item.active %} is-active{% endif %}" href="{{ nav_item.children[0].url | url }}">{{ nav_item.title }}</a>
+				{% else %}
+					<a class="nav-link{% if nav_item.active %} is-active{% endif %}" href="{{ nav_item.url | url }}">{{ nav_item.title }}</a>
+				{% endif %}
+			{% endfor %}
+		</nav>
+		<div class="header-actions">
+			<form class="search-form" role="search" id="search-form"
+				data-search-index="{{ 'search/search_index.json' | url }}"
+				data-base-url="{{ base_url }}">
+				<label class="sr-only" for="search-input">Buscar en la documentación</label>
+				<span aria-hidden="true">⌕</span>
+				<input id="search-input" name="q" type="search" placeholder="Buscar" autocomplete="off">
+				<kbd>Ctrl K</kbd>
+				<div id="search-results" class="search-results" hidden></div>
+			</form>
+			<button class="icon-button" type="button" id="theme-toggle" aria-label="Cambiar tema"
+				title="Cambiar tema"><span aria-hidden="true">◐</span></button>
+			{% if config.repo_url %}<a class="github-link" href="{{ config.repo_url }}" target="_blank" rel="noopener"
+				aria-label="Abrir repositorio en GitHub" title="Repositorio en GitHub">GitHub</a>{% endif %}
+			<button class="icon-button menu-toggle" type="button" id="menu-toggle" aria-label="Abrir menú"
+				aria-expanded="false"><span aria-hidden="true">☰</span></button>
+		</div>
+	</div>
+</header>
