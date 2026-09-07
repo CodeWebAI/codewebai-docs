@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="{{ config.theme.language | default('es') }}" class="scroll-smooth">
 	<head>
+		{# Apply the saved color scheme before the first paint to avoid a light-theme flash. #}
+		<script>
+			(function () {
+				const storedTheme = localStorage.getItem('codewebai-theme');
+				const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				document.documentElement.dataset.theme = storedTheme || preferredTheme;
+			}());
+		</script>
 		{% block site_meta %}
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">

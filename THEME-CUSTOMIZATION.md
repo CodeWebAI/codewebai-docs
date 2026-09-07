@@ -147,13 +147,13 @@ src/input.css
 
 Desde la raíz del proyecto:
 
-```powershell
-pnpm exec tailwindcss -i .\src\input.css -o .\docs\assets\stylesheets\tailwind.css --watch
+```gitbash
+pnpm exec tailwindcss -i ./src/input.css -o ./docs/assets/stylesheets/tailwind.css --watch
 ```
 
 En otra terminal:
 
-```powershell
+```gitbash
 mkdocs serve
 ```
 

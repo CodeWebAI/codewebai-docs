@@ -14,13 +14,6 @@ theme:
 plugins:
   - search
 
-extra_css:
-  - assets/stylesheets/tailwind.css
-
-extra_javascript:
-  - assets/javascripts/theme.js
-  - assets/javascripts/search.js
-
 markdown_extensions:
   - admonition
   - pymdownx.superfences
