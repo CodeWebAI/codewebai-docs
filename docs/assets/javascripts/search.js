@@ -1,4 +1,7 @@
 (function () {
+	if (window.__codewebaiSearchInitialized) return;
+	window.__codewebaiSearchInitialized = true;
+
 	const form = document.querySelector('#search-form');
 	const input = document.querySelector('#search-input');
 	const results = document.querySelector('#search-results');

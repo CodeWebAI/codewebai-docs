@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ config.theme.language | default('es') }}" class="scroll-smooth">
+	<head>
+		{# Apply the saved color scheme before the first paint to avoid a light-theme flash. #}
+		<script>
+			(function () {
+				const storedTheme = localStorage.getItem('codewebai-theme');
+				const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				document.documentElement.dataset.theme = storedTheme || preferredTheme;
+			}());
+		</script>
+		{% block site_meta %}
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="description" content="{{ config.site_description }}">
+			<title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+			{% if config.theme.favicon %}<link rel="icon" href="{{ config.theme.favicon | url }}">{% endif %}
+		{% endblock %}
+		{% block styles %}
+			<link rel="stylesheet" href="{{ 'assets/stylesheets/tailwind.css' | url }}">
+		{% endblock %}
+	</head>
+	<body class="site-body">
+		<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+		{% include "partials/navbar.html" %}
+		{% set is_home = page and page.file.src_path == "index.md" %}
+		<div class="site-shell{% if is_home %} home-shell{% endif %}">
+			{% if not is_home %}
+				{% include "partials/sidebar.html" %}
+			{% endif %}
+			<main id="main-content" class="site-main">
+				<div class="content-grid">
+					<article class="prose-content">
+						{% block content %}{{ page.content }}{% endblock %}
+					</article>
+					{% if not is_home %}
+						{% include "partials/toc.html" %}
+					{% endif %}
+				</div>
+			</main>
+		</div>
+		{% include "partials/footer.html" %}
+		{% block scripts %}
+			<script src="{{ 'assets/javascripts/theme.js' | url }}"></script>
+			<script src="{{ 'assets/javascripts/search.js' | url }}"></script>
+		{% endblock %}
+	</body>
+</html>

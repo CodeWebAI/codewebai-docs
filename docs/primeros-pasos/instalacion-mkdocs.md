@@ -179,12 +179,26 @@ Bloques de Alerta (Admonitions)
 
 Son perfectos para destacar información crítica, advertencias o notas. Usamos el siguiente formato (compatible con el tema Material for MkDocs):
 
-
+```
 !!! note "Título Opcional"
     Contenido de la nota. Puede tener múltiples párrafos o listas dentro.
+
 
 !!! warning "Atención"
     Este es un mensaje de advertencia.
 
 !!! danger "Peligro"
     ¡No ejecutar esta acción sin supervisión!
+
+```
+!!! note "Título Opcional"
+    Contenido de la nota. Puede tener múltiples párrafos o listas dentro.
+
+<br>
+
+!!! warning "Atención"
+    Este es un mensaje de advertencia.
+<br>
+!!! danger "Peligro"
+    ¡No ejecutar esta acción sin supervisión!
+

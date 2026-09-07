@@ -1,5 +1,5 @@
 # Definicion de Extensiones o librerias.
-Dentro del desarrollo de la documentacion para CodeWebAI tenemos incluidas extensiones y librerias que nos permiten el buen funcionamiento y presentacion de la descripcion de nuestra empresa.
+Dentro del desarrollo de la documentacion para CodeWebAI tenemos incluidas extensiones y librerias que nos permiten el buen funcionamiento y presentacion de nuestra empresa.
 
 ## Lista de Extensiones
 ### 1.  - attr_list
@@ -23,17 +23,18 @@ Un uso muy común es darle una clase específica a un elemento para modificar su
   Esta extension permite mezclar HTML y Markdown dentro del mismo bloque.
 
   Ejemplo
-  
-```
-** HTML**
 
+  **HTML**
+
+```
   <div>
 Este es un texto.
-</div>```
+</div>
+```
 
 **Markdown**
 
-
+``` 
 <div markdown="1">
 
 ## Este es un título
