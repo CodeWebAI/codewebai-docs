@@ -182,43 +182,6 @@ button, input { font: inherit; }
 
 .header-actions { display: flex; align-items: center; gap: .55rem; }
 
-.search-form {
-  position: relative; display: flex; align-items: center; gap: .5rem;
-  min-width: 12rem; padding: .38rem .7rem;
-  color: #8ca0b8;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.11);
-  border-radius: var(--radius-md);
-  transition: background var(--t), border-color var(--t), box-shadow var(--t);
-}
-.search-form:focus-within {
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(67,97,238,0.5);
-  box-shadow: 0 0 0 3px rgba(67,97,238,0.18);
-}
-.search-form input { width: 100%; min-width: 0; color: white; background: transparent; border: 0; outline: 0; font-size: .875rem; }
-.search-form input::placeholder { color: #7a90a8; }
-.search-form kbd {
-  padding: .1rem .38rem; color: #6e88a4;
-  border: 1px solid rgba(255,255,255,0.13);
-  border-radius: .25rem; font-size: .68rem; white-space: nowrap;
-  font-family: inherit; letter-spacing: .02em;
-}
-
-.search-results {
-  position: absolute; top: calc(100% + .5rem); right: 0; left: 0;
-  max-height: 22rem; overflow-y: auto; padding: .4rem;
-  color: var(--ink); background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  animation: fadeSlideDown .15s var(--ease-out);
-}
-.search-result { display: block; padding: .6rem .75rem; border-radius: var(--radius-sm); transition: background var(--t); }
-.search-result:hover { background: var(--accent-soft); }
-.search-result-title { display: block; font-weight: 650; font-size: .875rem; }
-.search-result-text { display: block; overflow: hidden; color: var(--muted); font-size: .78rem; text-overflow: ellipsis; white-space: nowrap; }
-
 .icon-button {
   display: inline-grid; width: 2.1rem; height: 2.1rem;
   place-items: center; color: var(--header-text); cursor: pointer;
@@ -504,11 +467,7 @@ button, input { font: inherit; }
 ────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .header-inner { padding: .6rem 1rem; }
-  .brand span, .github-link, .search-form kbd { display: none; }
-  .search-form { min-width: 2.35rem; width: 2.35rem; padding: .38rem; }
-  .search-form input { display: none; }
-  .search-form:focus-within { position: absolute; right: 4.5rem; left: 1rem; width: auto; background: var(--header-bg); }
-  .search-form:focus-within input { display: block; }
+  .brand span, .github-link { display: none; }
   .menu-toggle { display: inline-grid; }
   .site-shell { display: block; }
   .sidebar { display: none; padding: 1rem; border-right: 0; border-bottom: 1px solid var(--line); }

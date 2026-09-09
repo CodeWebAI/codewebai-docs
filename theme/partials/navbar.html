@@ -14,15 +14,6 @@
 			{% endfor %}
 		</nav>
 		<div class="header-actions">
-			<form class="search-form" role="search" id="search-form"
-				data-search-index="{{ 'search/search_index.json' | url }}"
-				data-base-url="{{ base_url }}">
-				<label class="sr-only" for="search-input">Buscar en la documentación</label>
-				<span aria-hidden="true">⌕</span>
-				<input id="search-input" name="q" type="search" placeholder="Buscar" autocomplete="off">
-				<kbd>Ctrl K</kbd>
-				<div id="search-results" class="search-results" hidden></div>
-			</form>
 			<button class="icon-button" type="button" id="theme-toggle" aria-label="Cambiar tema"
 				title="Cambiar tema"><span aria-hidden="true">◐</span></button>
 			{% if config.repo_url %}<a class="github-link" href="{{ config.repo_url }}" target="_blank" rel="noopener"

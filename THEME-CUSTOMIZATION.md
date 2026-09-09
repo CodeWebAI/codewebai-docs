@@ -8,7 +8,6 @@ Reemplazar la apariencia de Material for MkDocs por un theme propio basado en Mk
 
 - Navbar y navegación principal.
 - Navegación lateral jerárquica.
-- Búsqueda del sitio.
 - Cambio entre modo claro y oscuro.
 - Persistencia del tema seleccionado.
 - Enlace al repositorio de GitHub.
@@ -117,15 +116,11 @@ theme:
   logo: assets/img/logoCWAI.svg
   favicon: assets/img/logoCWAI.svg
 
-plugins:
-  - search
-
 extra_css:
   - assets/stylesheets/tailwind.css
 
 extra_javascript:
   - assets/javascripts/theme.js
-  - assets/javascripts/search.js
 ```
 
 `name: mkdocs` se mantiene porque MkDocs necesita un theme base instalado. La apariencia final se reemplaza mediante `custom_dir: theme`; no se utiliza Material.
@@ -160,7 +155,7 @@ mkdocs serve
 ### Compilación para producción
 
 ```powershell
-pnpm exec tailwindcss -i .\src\input.css -o .\docs\assets\stylesheets\tailwind.css --minify
+pnpm exec tailwindcss -i ./src/input.css -o ./docs/assets/stylesheets/tailwind.css --minify
 mkdocs build --strict
 ```
 
@@ -203,16 +198,6 @@ La clave utilizada en `localStorage` es:
 ```text
 codewebai-theme
 ```
-
-### `docs/assets/javascripts/search.js`
-
-Implementa:
-
-- Carga de `search/search_index.json` generado por MkDocs.
-- Filtrado de resultados por título y contenido.
-- Resultados desplegables bajo el campo de búsqueda.
-- Atajo `Ctrl + K` o `Cmd + K`.
-- Cierre de búsqueda con `Escape`.
 
 ## Imágenes y texto lateral
 
@@ -282,11 +267,9 @@ theme/main.html
 theme/theme.yml
 theme/partials/navbar.html
 theme/partials/sidebar.html
-theme/partials/search.html
 theme/partials/toc.html
 theme/partials/footer.html
 docs/assets/javascripts/theme.js
-docs/assets/javascripts/search.js
 docs/assets/stylesheets/tailwind.css
 docs/index.md
 ```
@@ -304,7 +287,6 @@ Validar manualmente:
 
 - Navegación entre páginas.
 - Menú responsive.
-- Búsqueda.
 - Cambio y persistencia del tema.
 - Enlace de GitHub.
 - Logo y favicon.
