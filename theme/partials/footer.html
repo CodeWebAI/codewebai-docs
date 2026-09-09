@@ -1,0 +1,8 @@
+<footer class="site-footer">
+	<div class="footer-inner">
+		<span>&copy; {{ config.site_author }}</span>
+		{% if config.repo_url %}
+			<a href="{{ config.repo_url }}" target="_blank" rel="noopener">{{ config.repo_name }}</a>
+		{% endif %}
+	</div>
+</footer>
