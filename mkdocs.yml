@@ -11,9 +11,6 @@ theme:
   logo: assets/img/logoCWAI.svg
   favicon: assets/img/logoCWAI.svg
 
-plugins:
-  - search
-
 markdown_extensions:
   - admonition
   - pymdownx.superfences
