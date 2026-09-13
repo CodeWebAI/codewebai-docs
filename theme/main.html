@@ -1,47 +1,170 @@
 <!doctype html>
 <html lang="{{ config.theme.language | default('es') }}" class="scroll-smooth">
-	<head>
-		{# Apply the saved color scheme before the first paint to avoid a light-theme flash. #}
-		<script>
-			(function () {
-				const storedTheme = localStorage.getItem('codewebai-theme');
-				const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-				document.documentElement.dataset.theme = storedTheme || preferredTheme;
-			}());
-		</script>
-		{% block site_meta %}
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<meta name="description" content="{{ config.site_description }}">
-			<title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
-			{% if config.theme.favicon %}<link rel="icon" href="{{ config.theme.favicon | url }}">{% endif %}
-		{% endblock %}
-		{% block styles %}
-			<link rel="stylesheet" href="{{ 'assets/stylesheets/tailwind.css' | url }}">
-		{% endblock %}
-	</head>
-	<body class="site-body">
-		<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+<head>
+	{# Guard anti-parpadeo y tema de color #}
+	<script>
+		(function () {
+			const storedTheme = localStorage.getItem('codewebai-theme');
+			const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			document.documentElement.dataset.theme = storedTheme || preferredTheme;
+
+			// Definir URLs relativas para redirecciones portables
+			window.__LOGIN_URL__ = "{{ 'login/' | url }}";
+			window.__HOME_URL__ = "{{ '' | url }}";
+		}());
+	</script>
+
+	{# Estilo para prevenir parpadeo de contenido protegido y centrar login #}
+	<style>
+		/* Oculta el contenido protegido hasta que Supabase valide la sesión */
+		html:not(.auth-verified):not(.is-auth-page) .site-shell,
+		html:not(.auth-verified):not(.is-auth-page) .site-header {
+			visibility: hidden !important;
+			opacity: 0 !important;
+		}
+
+		/* Estilos para vista de login dividida en pantalla completa */
+		body.auth-page-body {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+			background: var(--surface-muted);
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden;
+		}
+		body.auth-page-body .site-shell {
+			display: flex;
+			flex: 1;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			max-width: 100% !important;
+			margin: 0 !important;
+			padding: 1.5rem 0 !important;
+		}
+		body.auth-page-body .site-main {
+			width: 100%;
+			max-width: 100% !important;
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+		body.auth-page-body .content-grid {
+			display: block;
+			width: 100%;
+			max-width: 100% !important;
+			padding: 0 !important;
+			margin: 0 !important;
+		}
+		body.auth-page-body .prose-content {
+			width: 100%;
+			max-width: 100% !important;
+			padding: 0 !important;
+			margin: 0 !important;
+		}
+
+		/* Estilos adicionales para la barra de usuario en la navbar */
+		.user-auth-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.6rem;
+			font-size: 0.82rem;
+			padding: 0.25rem 0.6rem;
+			background: var(--surface-raised);
+			border: 1px solid var(--line);
+			border-radius: var(--radius-sm);
+			color: var(--ink-secondary);
+		}
+
+		.user-email {
+			max-width: 140px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.logout-btn {
+			background: transparent;
+			border: none;
+			color: var(--accent);
+			font-weight: 600;
+			cursor: pointer;
+			padding: 0.15rem 0.35rem;
+			border-radius: var(--radius-sm);
+			transition: background var(--t) ease;
+		}
+
+		.logout-btn:hover {
+			background: var(--accent-soft);
+		}
+
+		@media (max-width: 768px) {
+			.user-email {
+				display: none;
+			}
+		}
+	</style>
+
+	{% block site_meta %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{{ config.site_description }}">
+	<title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+	{% if config.theme.favicon %}
+	<link rel="icon" href="{{ config.theme.favicon | url }}">{% endif %}
+	{% endblock %}
+
+	{% block styles %}
+	<link rel="stylesheet" href="{{ 'assets/stylesheets/tailwind.css' | url }}">
+	{% endblock %}
+
+	{# Supabase JS SDK Oficial desde CDN #}
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	{# Variables de entorno inyectadas en build #}
+	<script src="{{ 'assets/javascripts/supabase-env.js' | url }}"></script>
+</head>
+
+{% set is_home = page and page.file.src_path == "index.md" %}
+{% set is_login = page and page.file.src_path == "login.md" %}
+
+<body class="site-body{% if is_login %} auth-page-body{% endif %}">
+	<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+	{% if is_login %}
+	<script>
+		document.documentElement.classList.add('is-auth-page');
+		window.__IS_LOGIN_PAGE__ = true;
+	</script>
+	{% endif %}
+
+	{% if not is_login %}
 		{% include "partials/navbar.html" %}
-		{% set is_home = page and page.file.src_path == "index.md" %}
-		<div class="site-shell{% if is_home %} home-shell{% endif %}">
-			{% if not is_home %}
-				{% include "partials/sidebar.html" %}
-			{% endif %}
-			<main id="main-content" class="site-main">
-				<div class="content-grid">
-					<article class="prose-content">
-						{% block content %}{{ page.content }}{% endblock %}
-					</article>
-					{% if not is_home %}
-						{% include "partials/toc.html" %}
-					{% endif %}
-				</div>
-			</main>
-		</div>
+	{% endif %}
+
+	<div class="site-shell{% if is_home %} home-shell{% endif %}{% if is_login %} auth-shell{% endif %}">
+		{% if not is_home and not is_login %}
+		{% include "partials/sidebar.html" %}
+		{% endif %}
+		<main id="main-content" class="site-main">
+			<div class="content-grid">
+				<article class="prose-content">
+					{% block content %}{{ page.content }}{% endblock %}
+				</article>
+				{% if not is_home and not is_login %}
+				{% include "partials/toc.html" %}
+				{% endif %}
+			</div>
+		</main>
+	</div>
+
+	{% if not is_login %}
 		{% include "partials/footer.html" %}
-		{% block scripts %}
-			<script src="{{ 'assets/javascripts/theme.js' | url }}"></script>
-		{% endblock %}
-	</body>
+	{% endif %}
+
+	{% block scripts %}
+	<script src="{{ 'assets/javascripts/theme.js' | url }}"></script>
+	<script src="{{ 'assets/javascripts/supabase-auth.js' | url }}"></script>
+	{% endblock %}
+</body>
+
 </html>

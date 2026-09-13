@@ -5,46 +5,45 @@ repo_name: codewebai-docs
 repo_url: https://github.com/CodeWebAI/codewebai-docs
 
 theme:
-  name: mkdocs
-  custom_dir: theme
-  language: es
-  logo: assets/img/logoCWAI.svg
-  favicon: assets/img/logoCWAI.svg
+    name: mkdocs
+    custom_dir: theme
+    language: es
+    logo: assets/img/logoCWAI.svg
+    favicon: assets/img/logoCWAI.svg
 
 markdown_extensions:
-  - admonition
-  - pymdownx.superfences
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.tabbed:
-      alternate_style: true
-  - attr_list
-  - md_in_html
+    - admonition
+    - pymdownx.superfences
+    - pymdownx.highlight:
+          anchor_linenums: true
+    - pymdownx.tabbed:
+          alternate_style: true
+    - attr_list
+    - md_in_html
 
 # Definición del menú de navegación
 nav:
-  - Inicio: index.md
- 
-  - Desarrollo:
-      - Índice: primeros-pasos/index.md
-      - Instalación de Python y Pip: primeros-pasos/python-pip.md
-      - Instalación de MkDocs: primeros-pasos/instalacion-mkdocs.md
-      - Incidencias y Solucion de Errores: primeros-pasos/incidencias-solucion.md
+    - Inicio: index.md
 
-  - Estándares:
-      - Índice: estandares/index.md
-      - Flujo de Git: estandares/flujo-git.md
-      - Despliegues & Servidores: estandares/despliegues-y-servidores.md
-      - Extensiones: estandares/extensiones.md
-      - Buenas Prácticas: estandares/practicas.md
+    - Desarrollo:
+          - Índice: primeros-pasos/index.md
+          - Instalación de Python y Pip: primeros-pasos/python-pip.md
+          - Instalación de MkDocs: primeros-pasos/instalacion-mkdocs.md
+          - Incidencias y Solucion de Errores: primeros-pasos/incidencias-solucion.md
 
-  - Proyectos:
-      - Índice: proyectos/index.md
-      - Productos:
-          - Educheck: proyectos/Productos/educheck.md
-      - Clientes:
-          - Mariachi Noche Mexicana: proyectos/clientes/mariachi-noche.md
+    - Estándares:
+          - Índice: estandares/index.md
+          - Flujo de Git: estandares/flujo-git.md
+          - Despliegues & Servidores: estandares/despliegues-y-servidores.md
+          - Extensiones: estandares/extensiones.md
+          - Buenas Prácticas: estandares/practicas.md
 
-  - Helpdesk:
-      - Índice: helpdesk/index.md
-   
+    - Proyectos:
+          - Índice: proyectos/index.md
+          - Productos:
+                - Educheck: proyectos/Productos/educheck.md
+          - Clientes:
+                - Mariachi Noche Mexicana: proyectos/clientes/mariachi-noche.md
+
+    - Helpdesk:
+          - Índice: helpdesk/index.md

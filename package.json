@@ -1,8 +1,10 @@
 {
   "packageManager": "pnpm@10.33.2",
   "scripts": {
+    "setup:env": "node scripts/setup-env.js",
     "build:css": "tailwindcss -i ./src/input.css -o ./docs/assets/stylesheets/tailwind.css --minify",
-    "serve": "tailwindcss -i ./src/input.css -o ./docs/assets/stylesheets/tailwind.css --watch"
+    "serve": "tailwindcss -i ./src/input.css -o ./docs/assets/stylesheets/tailwind.css --watch",
+    "build": "pnpm run setup:env && pnpm run build:css && mkdocs build"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
