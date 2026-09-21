@@ -38,17 +38,34 @@
 				{% endfor %}
 			</ul>
 		{% endmacro %}
-		<ul class="sidebar-list">
-			{% for item in nav.items %}
-				{% if item.children and item.active %}
+		{% if is_home or (page and page.file.src_path == "index.md") %}
+			{# En la pestaña de Inicio: mostrar las secciones disponibles para ir a cada una #}
+			<p class="sidebar-heading">Secciones</p>
+			<ul class="sidebar-list">
+				{% for item in nav %}
 					<li>
-						<details open>
-							<summary>{{ item.title }}</summary>
-							{{ render_items(item.children) }}
-						</details>
+						{% if item.children %}
+							<a class="sidebar-link" href="{{ item.children[0].url | url }}">{{ item.title }}</a>
+						{% else %}
+							<a class="sidebar-link{% if item.active %} is-active{% endif %}" href="{{ item.url | url }}">{{ item.title }}</a>
+						{% endif %}
 					</li>
-				{% endif %}
-			{% endfor %}
-		</ul>
+				{% endfor %}
+			</ul>
+		{% else %}
+			{# En secciones diferentes a Home: mostrar las opciones para navegar en dicha sección #}
+			<ul class="sidebar-list">
+				{% for item in nav.items %}
+					{% if item.children and item.active %}
+						<li>
+							<details open>
+								<summary>{{ item.title }}</summary>
+								{{ render_items(item.children) }}
+							</details>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		{% endif %}
 	</nav>
 </aside>

@@ -790,6 +790,10 @@ input {
   }
 }
 
+.home-shell .sidebar {
+  display: none !important;
+}
+
 /* ─────────────────────────────────────────────
    RESPONSIVE — Tablet (≤ 1080px)
 ────────────────────────────────────────────── */
@@ -840,15 +844,30 @@ input {
     display: block;
   }
 
+  .sidebar .sidebar-link,
+  .sidebar details summary {
+    padding: .55rem .75rem;
+    font-size: .9rem;
+  }
+
   .sidebar {
     display: none;
-    padding: 1rem;
+    position: sticky;
+    top: 4.25rem;
+    z-index: 35;
+    width: 100%;
+    max-height: calc(100vh - 4.25rem);
+    overflow-y: auto;
+    background: var(--surface-muted);
+    padding: 1rem 1.25rem 1.5rem;
     border-right: 0;
     border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
   }
 
   .sidebar.is-open {
-    display: block;
+    display: block !important;
+    animation: fadeSlideDown 0.2s ease-out;
   }
 
   .site-main {
