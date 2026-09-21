@@ -24,7 +24,7 @@
 			opacity: 0 !important;
 		}
 
-		/* Estilos para vista de login dividida en pantalla completa */
+		/* Estilos para vista de login en pantalla completa uniforme */
 		body.auth-page-body {
 			display: flex;
 			flex-direction: column;
@@ -42,13 +42,15 @@
 			width: 100%;
 			max-width: 100% !important;
 			margin: 0 !important;
-			padding: 1.5rem 0 !important;
+			padding: 0 !important;
+			background: transparent !important;
 		}
 		body.auth-page-body .site-main {
 			width: 100%;
 			max-width: 100% !important;
 			margin: 0 !important;
 			padding: 0 !important;
+			background: transparent !important;
 		}
 		body.auth-page-body .content-grid {
 			display: block;
@@ -56,12 +58,14 @@
 			max-width: 100% !important;
 			padding: 0 !important;
 			margin: 0 !important;
+			background: transparent !important;
 		}
 		body.auth-page-body .prose-content {
 			width: 100%;
 			max-width: 100% !important;
 			padding: 0 !important;
 			margin: 0 !important;
+			background: transparent !important;
 		}
 
 		/* Estilos adicionales para la barra de usuario en la navbar */
@@ -104,6 +108,38 @@
 				display: none;
 			}
 		}
+
+		/* Responsive Sidebar & Navegación Móvil */
+		@media (min-width: 769px) {
+			.home-shell .sidebar {
+				display: none !important;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.sidebar .sidebar-link,
+			.sidebar details summary {
+				padding: .55rem .75rem;
+				font-size: .9rem;
+			}
+			.sidebar {
+				display: none;
+				position: sticky;
+				top: 4.25rem;
+				z-index: 35;
+				width: 100%;
+				max-height: calc(100vh - 4.25rem);
+				overflow-y: auto;
+				background: var(--surface-muted);
+				border-bottom: 1px solid var(--line);
+				box-shadow: var(--shadow-md);
+				padding: 1rem 1.25rem 1.5rem;
+			}
+			.sidebar.is-open {
+				display: block !important;
+				animation: fadeSlideDown 0.2s ease-out;
+			}
+		}
 	</style>
 
 	{% block site_meta %}
@@ -129,7 +165,9 @@
 {% set is_login = page and page.file.src_path == "login.md" %}
 
 <body class="site-body{% if is_login %} auth-page-body{% endif %}">
+	{% if not is_login %}
 	<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+	{% endif %}
 	{% if is_login %}
 	<script>
 		document.documentElement.classList.add('is-auth-page');
@@ -142,7 +180,7 @@
 	{% endif %}
 
 	<div class="site-shell{% if is_home %} home-shell{% endif %}{% if is_login %} auth-shell{% endif %}">
-		{% if not is_home and not is_login %}
+		{% if not is_login %}
 		{% include "partials/sidebar.html" %}
 		{% endif %}
 		<main id="main-content" class="site-main">

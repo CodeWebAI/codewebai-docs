@@ -17,10 +17,47 @@
 
 	setTheme(storedTheme || preferredTheme);
 	themeToggle?.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
-	menuToggle?.addEventListener('click', () => {
-		const isOpen = sidebar.classList.toggle('is-open');
-		menuToggle.setAttribute('aria-expanded', String(isOpen));
-	});
+	// Control del menú hamburguesa móvil con buenas prácticas de UX y accesibilidad
+	if (menuToggle && sidebar) {
+		const updateMenuState = (isOpen) => {
+			sidebar.classList.toggle('is-open', isOpen);
+			menuToggle.setAttribute('aria-expanded', String(isOpen));
+			menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+			const icon = menuToggle.querySelector('span');
+			if (icon) icon.textContent = isOpen ? '✕' : '☰';
+		};
+
+		menuToggle.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const isOpen = !sidebar.classList.contains('is-open');
+			updateMenuState(isOpen);
+		});
+
+		// Cerrar menú con tecla Escape
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && sidebar.classList.contains('is-open')) {
+				updateMenuState(false);
+			}
+		});
+
+		// Cerrar menú al hacer clic fuera
+		document.addEventListener('click', (e) => {
+			if (
+				sidebar.classList.contains('is-open') &&
+				!sidebar.contains(e.target) &&
+				!menuToggle.contains(e.target)
+			) {
+				updateMenuState(false);
+			}
+		});
+
+		// Cerrar menú si se redimensiona a pantalla de escritorio
+		window.addEventListener('resize', () => {
+			if (window.innerWidth > 768 && sidebar.classList.contains('is-open')) {
+				updateMenuState(false);
+			}
+		});
+	}
 
 	document.querySelectorAll('pre').forEach((block) => {
 		const button = document.createElement('button');
