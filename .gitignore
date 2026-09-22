@@ -3,3 +3,4 @@ dist/
 site/
 docs/assets/javascripts/supabase-env.js
 .env
+.venv
