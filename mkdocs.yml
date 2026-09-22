@@ -41,9 +41,17 @@ nav:
     - Proyectos:
           - Índice: proyectos/index.md
           - Productos:
-                - Educheck: proyectos/Productos/educheck.md
+                - EducheckAI: 
+                    - índice: proyectos/Productos/EducheckAI/educheck.md
+                - Klarify: 
+                    - índice: proyectos/Productos/Klarify/klarify.md
           - Clientes:
                 - Mariachi Noche Mexicana: proyectos/clientes/mariachi-noche.md
 
     - Helpdesk:
           - Índice: helpdesk/index.md
+          - Operación del HelpDesk: helpdesk/operacion.md
+          - Atención al cliente: helpdesk/atencion-al-cliente.md
+          - Incidencias y solicitudes: helpdesk/incidencias-y-solicitudes.md
+          - Gestión y seguimiento de proyectos: helpdesk/gestion-de-proyectos.md
+          - Comunicación y escalamiento: helpdesk/comunicacion-y-escalamiento.md
