@@ -2,42 +2,143 @@
 title: Configurar Contraseña
 ---
 
-<div class="min-h-screen w-full flex items-center justify-center p-5 sm:p-8">
-  <div class="w-full max-w-[400px] bg-[var(--surface)] border border-[var(--line)] rounded-2xl shadow-xl p-8 sm:p-10 relative transition-all duration-200">
-    
-    <!-- Logotipo oficial CodeWebAI -->
-    <div class="flex justify-center mb-6">
-      <img src="../assets/img/logoCWAI.svg" alt="CodeWebAI Logo" class="h-10 w-10 object-contain" />
-    </div>
+<style>
+  .set-password-view {
+    display: flex;
+    width: 100%;
+    min-height: 100dvh;
+    align-items: center;
+    justify-content: center;
+    padding: .75rem;
+  }
 
-    <!-- Feedback de estado (Alerta) -->
-    <div id="set-pwd-alert" style="display: none;" class="mb-6 p-3.5 rounded-xl text-sm font-medium transition-all"></div>
+  .set-password-card {
+    width: 100%;
+    max-width: 27.5rem;
+    max-height: calc(100dvh - 1.5rem);
+    overflow-y: auto;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-lg);
+  }
 
-    <!-- =========================================================
-         FORMULARIO: CONFIGURAR CONTRASEÑA
-    ========================================================== -->
+  .set-password-title {
+    margin: 0 0 .5rem;
+    color: var(--ink);
+    font-size: 1.25rem;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .set-password-description {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+    font-size: .875rem;
+    line-height: 1.375;
+    text-align: center;
+  }
+
+  .set-password-field {
+    margin-bottom: 1rem;
+  }
+
+  .set-password-label {
+    display: block;
+    margin-bottom: .125rem;
+    color: var(--ink);
+    font-size: .875rem;
+    font-weight: 600;
+  }
+
+  .set-password-control {
+    width: 100%;
+    padding: .625rem .875rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: .75rem;
+    font-size: .875rem;
+    transition: border-color var(--t), box-shadow var(--t);
+  }
+
+  .set-password-control::placeholder {
+    color: var(--muted);
+  }
+
+  .set-password-control:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+  }
+
+  .set-password-email {
+    display: block;
+    overflow: hidden;
+    color: var(--muted);
+    background: var(--surface-muted);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .set-password-submit {
+    width: 100%;
+    margin-top: .25rem;
+    padding: .625rem 1rem;
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    border-radius: .75rem;
+    box-shadow: var(--shadow-sm);
+    font-size: .875rem;
+    font-weight: 500;
+    transition: background var(--t), box-shadow var(--t);
+  }
+
+  .set-password-submit:hover {
+    background: var(--accent-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 640px) {
+    .set-password-view {
+      padding: 1.5rem;
+    }
+
+    .set-password-card {
+      padding: 2rem;
+    }
+
+    .set-password-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<div class="set-password-view">
+  <div class="set-password-card">
+
+    <div id="set-pwd-alert" style="display: none;" class="mb-4 p-3 rounded-xl text-sm font-medium transition-all"></div>
+
     <div id="section-set-password">
-      <h1 class="text-2xl font-bold text-center text-[var(--ink)] tracking-tight mb-2">
-        Configura tu Contraseña
-      </h1>
-      <p class="text-sm text-center text-[var(--muted)] mb-7">
-        Establece una contraseña para acceder a la documentación.
-      </p>
+      <h2 class="set-password-title">
+        Crea tu contraseña
+      </h2>
 
-      <!-- Email del usuario (solo lectura) -->
-      <div class="mb-5">
-        <label class="block text-sm font-medium text-[var(--ink)] mb-2">
+      <div class="set-password-field">
+        <label class="set-password-label">
           Correo electrónico
         </label>
-        <div class="w-full px-3.5 py-2.5 bg-[var(--surface-muted)] border border-[var(--line)] rounded-xl text-[var(--muted)] text-sm select-none" id="user-email-display">
+        <div class="set-password-control set-password-email" id="user-email-display">
           Cargando...
         </div>
       </div>
 
-      <form id="form-set-password" class="space-y-5">
-        <!-- Campo Nueva Contraseña -->
-        <div>
-          <label for="new-password" class="block text-sm font-medium text-[var(--ink)] mb-2">
+      <form id="form-set-password">
+        <div class="set-password-field">
+          <label for="new-password" class="set-password-label">
             Nueva contraseña
           </label>
           <div class="relative">
@@ -46,14 +147,14 @@ title: Configurar Contraseña
               id="new-password" 
               required 
               minlength="8"
-              placeholder="Mínimo 8 caracteres"
+              placeholder="8 caracteres mínimo"
               autocomplete="new-password"
-              class="w-full pl-3.5 pr-10 py-2.5 bg-[var(--surface)] border border-[var(--line)] rounded-xl text-[var(--ink)] placeholder-[var(--muted)] text-sm focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/15 transition-all"
+              class="set-password-control pr-10"
             />
             <button 
               type="button" 
               id="toggle-new-pass" 
-              class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer focus:outline-none"
+              class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-(--muted) hover:text-(--ink) cursor-pointer focus:outline-none"
               title="Mostrar / ocultar contraseña"
             >
               <svg id="eye-icon-new" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,9 +165,8 @@ title: Configurar Contraseña
           </div>
         </div>
 
-        <!-- Campo Confirmar Contraseña -->
-        <div>
-          <label for="confirm-password" class="block text-sm font-medium text-[var(--ink)] mb-2">
+        <div class="set-password-field">
+          <label for="confirm-password" class="set-password-label">
             Confirmar contraseña
           </label>
           <div class="relative">
@@ -77,12 +177,12 @@ title: Configurar Contraseña
               minlength="8"
               placeholder="Repite tu contraseña"
               autocomplete="new-password"
-              class="w-full pl-3.5 pr-10 py-2.5 bg-[var(--surface)] border border-[var(--line)] rounded-xl text-[var(--ink)] placeholder-[var(--muted)] text-sm focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/15 transition-all"
+              class="set-password-control pr-10"
             />
             <button 
               type="button" 
               id="toggle-confirm-pass" 
-              class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer focus:outline-none"
+              class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-(--muted) hover:text-(--ink) cursor-pointer focus:outline-none"
               title="Mostrar / ocultar contraseña"
             >
               <svg id="eye-icon-confirm" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,12 +193,11 @@ title: Configurar Contraseña
           </div>
         </div>
 
-        <!-- Botón Guardar Contraseña -->
-        <div class="pt-2">
+        <div>
           <button 
             type="submit" 
             id="btn-set-password" 
-            class="w-full py-2.5 px-4 bg-[var(--accent)] hover:bg-[var(--accent-strong)] text-white font-medium rounded-xl shadow-sm hover:shadow transition-all text-sm flex justify-center items-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            class="set-password-submit flex justify-center items-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <span id="btn-set-pwd-text">Guardar Contraseña</span>
             <svg id="spinner-set-pwd" style="display: none;" class="w-4 h-4 animate-spin text-white" fill="none" viewBox="0 0 24 24">
