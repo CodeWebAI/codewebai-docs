@@ -12,6 +12,16 @@
 			// Definir URLs relativas para redirecciones portables
 			window.__LOGIN_URL__ = "{{ 'login/' | url }}";
 			window.__HOME_URL__ = "{{ '' | url }}";
+			window.__SET_PASSWORD_URL__ = "{{ 'configurar-password/' | url }}";
+
+			// Redirección inmediata si el hash contiene una invitación
+			// Esto evita el parpadeo de contenido antes de que supabase-auth.js procese el evento
+			var hash = window.location.hash;
+			if (hash && hash.indexOf('type=invite') !== -1) {
+				sessionStorage.setItem('codewebai-invite-pending', 'true');
+				// Preservar el hash para que Supabase procese el token en la página destino
+				window.location.replace(window.__SET_PASSWORD_URL__ + hash);
+			}
 		}());
 	</script>
 
@@ -163,24 +173,27 @@
 
 {% set is_home = page and page.file.src_path == "index.md" %}
 {% set is_login = page and page.file.src_path == "login.md" %}
+{% set is_set_password = page and page.file.src_path == "configurar-password.md" %}
+{% set is_auth_page = is_login or is_set_password %}
 
-<body class="site-body{% if is_login %} auth-page-body{% endif %}">
-	{% if not is_login %}
+<body class="site-body{% if is_auth_page %} auth-page-body{% endif %}{% if is_login %} auth-login-page{% endif %}{% if is_set_password %} auth-set-password-page{% endif %}">
+	{% if not is_auth_page %}
 	<a class="skip-link" href="#main-content">Ir al contenido principal</a>
 	{% endif %}
-	{% if is_login %}
+	{% if is_auth_page %}
 	<script>
 		document.documentElement.classList.add('is-auth-page');
-		window.__IS_LOGIN_PAGE__ = true;
+		window.__IS_LOGIN_PAGE__ = document.body.classList.contains('auth-login-page');
+		window.__IS_SET_PASSWORD_PAGE__ = document.body.classList.contains('auth-set-password-page');
 	</script>
 	{% endif %}
 
-	{% if not is_login %}
+	{% if not is_auth_page %}
 		{% include "partials/navbar.html" %}
 	{% endif %}
 
-	<div class="site-shell{% if is_home %} home-shell{% endif %}{% if is_login %} auth-shell{% endif %}">
-		{% if not is_login %}
+	<div class="site-shell{% if is_home %} home-shell{% endif %}{% if is_auth_page %} auth-shell{% endif %}">
+		{% if not is_auth_page %}
 		{% include "partials/sidebar.html" %}
 		{% endif %}
 		<main id="main-content" class="site-main">
@@ -188,14 +201,14 @@
 				<article class="prose-content">
 					{% block content %}{{ page.content }}{% endblock %}
 				</article>
-				{% if not is_home and not is_login %}
+				{% if not is_home and not is_auth_page %}
 				{% include "partials/toc.html" %}
 				{% endif %}
 			</div>
 		</main>
 	</div>
 
-	{% if not is_login %}
+	{% if not is_auth_page %}
 		{% include "partials/footer.html" %}
 	{% endif %}
 
