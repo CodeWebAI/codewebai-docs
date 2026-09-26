@@ -27,13 +27,6 @@
 
 	{# Estilo para prevenir parpadeo de contenido protegido y centrar login #}
 	<style>
-		/* Oculta el contenido protegido hasta que Supabase valide la sesión */
-		html:not(.auth-verified):not(.is-auth-page) .site-shell,
-		html:not(.auth-verified):not(.is-auth-page) .site-header {
-			visibility: hidden !important;
-			opacity: 0 !important;
-		}
-
 		/* Estilos para vista de login en pantalla completa uniforme */
 		body.auth-page-body {
 			display: flex;
@@ -120,6 +113,10 @@
 		}
 
 		/* Responsive Sidebar & Navegación Móvil */
+		.sidebar-home-link {
+			display: none;
+		}
+
 		@media (min-width: 769px) {
 			.home-shell .sidebar {
 				display: none !important;
@@ -127,6 +124,21 @@
 		}
 
 		@media (max-width: 768px) {
+			.sidebar .sidebar-home-link {
+				display: block;
+				margin-bottom: .75rem;
+				color: var(--ink-secondary);
+				font-weight: 600;
+				border-bottom: 1px solid var(--line);
+				border-left-color: transparent;
+			}
+
+			.sidebar .sidebar-home-link:hover {
+				color: var(--accent);
+				background: var(--accent-soft);
+				border-left-color: transparent;
+			}
+
 			.sidebar .sidebar-link,
 			.sidebar details summary {
 				padding: .55rem .75rem;
