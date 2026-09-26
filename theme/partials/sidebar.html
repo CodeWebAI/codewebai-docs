@@ -1,5 +1,8 @@
 <aside class="sidebar" id="site-sidebar" aria-label="Navegación del sitio">
 	<nav>
+		{% if not is_home %}
+		<a class="sidebar-link sidebar-home-link" href="{{ nav.homepage.url | url }}">Inicio</a>
+		{% endif %}
 		{% macro render_items(items) %}
 			<ul class="sidebar-list">
 				{% for item in items %}
