@@ -246,6 +246,12 @@ input {
   gap: .55rem;
 }
 
+.user-auth-slot {
+  display: inline-flex;
+  justify-content: flex-end;
+  min-width: 13.5rem;
+}
+
 .icon-button {
   display: inline-grid;
   width: 2.1rem;
@@ -849,6 +855,10 @@ input {
   .brand span,
   .github-link {
     display: none;
+  }
+
+  .user-auth-slot {
+    min-width: 3.75rem;
   }
 
   .menu-toggle {
