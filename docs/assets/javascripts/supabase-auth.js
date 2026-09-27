@@ -90,26 +90,26 @@
         }
     });
 
-    // 3. Renderizar usuario y botón de cerrar sesión en la Navbar
+    // 3. Completar la información del usuario en la Navbar
     function updateNavbarUserInfo(user) {
         if (!user) return;
-        const actionsContainer = document.querySelector('.header-actions');
-        if (!actionsContainer || document.getElementById('user-auth-badge')) return;
+        const userEmail = document.querySelector('.user-email');
+        const email = user.email || 'Cuenta';
+        const cachedEmail = sessionStorage.getItem('codewebai-user-email');
 
-        const userBadge = document.createElement('div');
-        userBadge.id = 'user-auth-badge';
-        userBadge.className = 'user-auth-badge';
-        userBadge.innerHTML = `
-      <span class="user-email" title="${user.email}">${user.email}</span>
-      <button type="button" id="logout-btn" class="logout-btn" title="Cerrar sesión">Salir</button>
-    `;
+        if (!cachedEmail && user.email) {
+            sessionStorage.setItem('codewebai-user-email', user.email);
+        }
 
-        // Insertar antes del botón de tema o menú
-        actionsContainer.prepend(userBadge);
-
-        document.getElementById('logout-btn')?.addEventListener('click', async () => {
-            await supabase.auth.signOut();
-            window.location.replace(`${window.__BASE_URL__ || '/'}login/`);
-        });
+        if (userEmail && !cachedEmail) {
+            userEmail.title = email;
+            userEmail.textContent = email;
+        }
     }
+
+    document.getElementById('logout-btn')?.addEventListener('click', async () => {
+        sessionStorage.removeItem('codewebai-user-email');
+        await supabase.auth.signOut();
+        window.location.replace(`${window.__BASE_URL__ || '/'}login/`);
+    });
 })();
