@@ -6,11 +6,13 @@
 		</a>
 		<nav class="desktop-nav" aria-label="Navegación principal">
 			{% for nav_item in nav %}
-				{% if nav_item.children %}
-					<a class="nav-link{% if nav_item.active %} is-active{% endif %}" href="{{ nav_item.children[0].url | url }}">{{ nav_item.title }}</a>
-				{% else %}
-					<a class="nav-link{% if nav_item.active %} is-active{% endif %}" href="{{ nav_item.url | url }}">{{ nav_item.title }}</a>
-				{% endif %}
+			{% if nav_item.children %}
+			<a class="nav-link{% if nav_item.active %} is-active{% endif %}"
+				href="{{ nav_item.children[0].url | url }}">{{ nav_item.title }}</a>
+			{% else %}
+			<a class="nav-link{% if nav_item.active %} is-active{% endif %}" href="{{ nav_item.url | url }}">{{
+				nav_item.title }}</a>
+			{% endif %}
 			{% endfor %}
 		</nav>
 		<div class="header-actions">

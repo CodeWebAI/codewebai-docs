@@ -147,10 +147,10 @@
 			.sidebar {
 				display: none;
 				position: sticky;
-				top: 4.25rem;
+				top: 3.75rem;
 				z-index: 35;
 				width: 100%;
-				max-height: calc(100vh - 4.25rem);
+				max-height: calc(100vh - 3.75rem);
 				overflow-y: auto;
 				background: var(--surface-muted);
 				border-bottom: 1px solid var(--line);
@@ -188,7 +188,7 @@
 {% set is_set_password = page and page.file.src_path == "configurar-password.md" %}
 {% set is_auth_page = is_login or is_set_password %}
 
-<body class="site-body{% if is_auth_page %} auth-page-body{% endif %}{% if is_login %} auth-login-page{% endif %}{% if is_set_password %} auth-set-password-page{% endif %}">
+<body class="site-body{% if is_home %} home-body{% endif %}{% if is_auth_page %} auth-page-body{% endif %}{% if is_login %} auth-login-page{% endif %}{% if is_set_password %} auth-set-password-page{% endif %}">
 	{% if not is_auth_page %}
 	<a class="skip-link" href="#main-content">Ir al contenido principal</a>
 	{% endif %}
