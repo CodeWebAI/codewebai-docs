@@ -1,5 +1,5 @@
 {
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@12.15.0",
   "scripts": {
     "setup:env": "node scripts/setup-env.js",
     "build:css": "tailwindcss -i ./src/input.css -o ./docs/assets/stylesheets/tailwind.css --minify",
