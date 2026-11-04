@@ -44,7 +44,7 @@ nav:
                 - EducheckAI:
                       - índice: proyectos/Productos/EducheckAI/educheck.md
                       - Administrador:
-                            - índice: proyectos/Productos/EducheckAI/Administrador/Index.md
+                            - indice: proyectos/Productos/EducheckAI/Administrador/admin.md
                       - Director:
                             - indice: proyectos/Productos/EducheckAI/Director/direc.md
                       - Profesor:
