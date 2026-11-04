@@ -4,71 +4,76 @@
 		<a class="sidebar-link sidebar-home-link" href="{{ nav.homepage.url | url }}">Inicio</a>
 		{% endif %}
 		{% macro render_items(items) %}
-			<ul class="sidebar-list">
-				{% for item in items %}
-					<li>
-						{% if item.children %}
-							<details{% if item.active %} open{% endif %}>
-								<summary>{{ item.title }}</summary>
-								{{ render_items(item.children) }}
-							</details>
-						{% else %}
-							<a class="sidebar-link{% if item.active %} is-active{% endif %}" href="{{ item.url | url }}">{{ item.title }}</a>
-							{% if item.active and page and page.toc %}
-								{% set first_toc = (page.toc | first) if page.toc else none %}
-								{% set subtemas = first_toc.children if (first_toc and first_toc.children and first_toc.level == 1) else (page.toc if (page.toc and (page.toc | length > 1 or (first_toc and first_toc.level > 1))) else none) %}
-								{% if subtemas %}
-									<ul class="sidebar-sublist">
-										{% for h2 in subtemas %}
-											<li>
-												<a class="sidebar-sublink" href="{{ h2.url }}">{{ h2.title }}</a>
-												{% if h2.children %}
-													<ul class="sidebar-sublist-nested">
-														{% for h3 in h2.children %}
-															<li>
-																<a class="sidebar-sublink sidebar-sublink-nested" href="{{ h3.url }}">{{ h3.title }}</a>
-															</li>
-														{% endfor %}
-													</ul>
-												{% endif %}
-											</li>
-										{% endfor %}
-									</ul>
-								{% endif %}
+		<ul class="sidebar-list">
+			{% for item in items %}
+			<li>
+				{% if item.children %}
+				<details{% if item.active %} open{% endif %}>
+					<summary>{{ item.title }}</summary>
+					{{ render_items(item.children) }}
+					</details>
+					{% else %}
+					<a class="sidebar-link{% if item.active %} is-active{% endif %}" href="{{ item.url | url }}">{{
+						item.title }}</a>
+					{% if item.active and page and page.toc %}
+					{% set first_toc = (page.toc | first) if page.toc else none %}
+					{% set subtemas = first_toc.children if (first_toc and first_toc.children and first_toc.level == 1)
+					else (page.toc if (page.toc and (page.toc | length > 1 or (first_toc and first_toc.level > 1))) else
+					none) %}
+					{% if subtemas %}
+					<ul class="sidebar-sublist">
+						{% for h2 in subtemas %}
+						<li>
+							<a class="sidebar-sublink" href="{{ h2.url }}">{{ h2.title }}</a>
+							{% if h2.children %}
+							<ul class="sidebar-sublist-nested">
+								{% for h3 in h2.children %}
+								<li>
+									<a class="sidebar-sublink sidebar-sublink-nested" href="{{ h3.url }}">{{ h3.title
+										}}</a>
+								</li>
+								{% endfor %}
+							</ul>
 							{% endif %}
-						{% endif %}
-					</li>
-				{% endfor %}
-			</ul>
+						</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+					{% endif %}
+					{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
 		{% endmacro %}
 		{% if is_home or (page and page.file.src_path == "index.md") %}
-			{# En la pestaña de Inicio: mostrar las secciones disponibles para ir a cada una #}
-			<p class="sidebar-heading">Secciones</p>
-			<ul class="sidebar-list">
-				{% for item in nav %}
-					<li>
-						{% if item.children %}
-							<a class="sidebar-link" href="{{ item.children[0].url | url }}">{{ item.title }}</a>
-						{% else %}
-							<a class="sidebar-link{% if item.active %} is-active{% endif %}" href="{{ item.url | url }}">{{ item.title }}</a>
-						{% endif %}
-					</li>
-				{% endfor %}
-			</ul>
+		{# En la pestaña de Inicio: mostrar las secciones disponibles para ir a cada una #}
+		<p class="sidebar-heading">Secciones</p>
+		<ul class="sidebar-list">
+			{% for item in nav %}
+			<li>
+				{% if item.children %}
+				<a class="sidebar-link" href="{{ item.children[0].url | url }}">{{ item.title }}</a>
+				{% else %}
+				<a class="sidebar-link{% if item.active %} is-active{% endif %}" href="{{ item.url | url }}">{{
+					item.title }}</a>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
 		{% else %}
-			{# En secciones diferentes a Home: mostrar las opciones para navegar en dicha sección #}
-			<ul class="sidebar-list">
-				{% for item in nav.items %}
-					{% if item.children and item.active %}
-						<li>
-							<details open>
-								<summary>{{ item.title }}</summary>
-								{{ render_items(item.children) }}
-							</details>
-						</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
+		{# En secciones diferentes a Home: mostrar las opciones para navegar en dicha sección #}
+		<ul class="sidebar-list">
+			{% for item in nav.items %}
+			{% if item.children and item.active %}
+			<li>
+				<details open>
+					<summary>{{ item.title }}</summary>
+					{{ render_items(item.children) }}
+				</details>
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
 		{% endif %}
 	</nav>
 </aside>

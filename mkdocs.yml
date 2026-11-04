@@ -41,10 +41,21 @@ nav:
     - Proyectos:
           - Índice: proyectos/index.md
           - Productos:
-                - EducheckAI: 
-                    - índice: proyectos/Productos/EducheckAI/educheck.md
-                - Klarify: 
-                    - índice: proyectos/Productos/Klarify/klarify.md
+                - EducheckAI:
+                      - índice: proyectos/Productos/EducheckAI/educheck.md
+                      - Administrador:
+                            - índice: proyectos/Productos/EducheckAI/Administrador/Index.md
+                      - Director:
+                            - indice: proyectos/Productos/EducheckAI/Director/direc.md
+                      - Profesor:
+                            - indice: proyectos/Productos/EducheckAI/Profesor/prof.md
+                            - Dashboard: proyectos/Productos/EducheckAI/Profesor/dashboard.md
+                            - Alumnos: proyectos/Productos/EducheckAI/Profesor/MisAlumnos.md
+                            - Materias: proyectos/Productos/EducheckAI/Profesor/MisMaterias.md
+                      - Alumno:
+                            - indice: proyectos/Productos/EducheckAI/Alumno/alum.md
+                - Klarify:
+                      - índice: proyectos/Productos/Klarify/klarify.md
           - Clientes:
                 - Mariachi Noche Mexicana: proyectos/clientes/mariachi-noche.md
 
