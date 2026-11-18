@@ -52,6 +52,9 @@ nav:
                             - Dashboard: proyectos/Productos/EducheckAI/Profesor/dashboard.md
                             - Alumnos: proyectos/Productos/EducheckAI/Profesor/MisAlumnos.md
                             - Materias: proyectos/Productos/EducheckAI/Profesor/MisMaterias.md
+                            - Horario: proyectos/Productos/EducheckAI/Profesor/MiHorario.md
+                            - Asistencia: proyectos/Productos/EducheckAI/Profesor/Asistencias.md
+                            - Entregas: proyectos/Productos/EducheckAI/Profesor/Entregas.md
                       - Alumno:
                             - indice: proyectos/Productos/EducheckAI/Alumno/alum.md
                 - Klarify:
