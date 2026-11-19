@@ -15,41 +15,6 @@ El módulo permite filtrar rápidamente entre tareas pendientes y calificadas, r
 
 ![Entregas](../../../../assets/img/profesor/Entregas.png){: width="860px"}
 
-## 2. Mapa Visual de la Pantalla
-
-A continuación se muestra la estructura visual de la interfaz principal (`TeacherDeliveriesPage.jsx`) y el modal de evaluación (`GradeDeliveryModal.jsx`):
-
-```
-+----------------------------------------------------------------------------------------------------+
-| BARRA SUPERIOR (Navbar)                                                                            |
-| [=] Entregas de alumnos | EduCheck IA - Portal Docente      [Profesor]  [(3)] [OM] Osito Muñoz (v) |
-+---------------------+------------------------------------------------------------------------------+
-| MENÚ LATERAL        | ÁREA DE CONTENIDO (TeacherDeliveriesPage.jsx)                                |
-|                     |                                                                              |
-| [Logo] Portal       | +--------------------------------------------------------------------------+ |
-|        Docente      | | [Clip] Entregas de alumnos  [ 12 entregas registradas ]                  | |
-|                     | | Revisión de entregas con una vista clara, rápida y sin ruido visual.     | |
-| ( ) Dashboard       | | (o) 4 pendientes    (*) 8 calificadas               [ (R) Actualizar ]   | |
-| ( ) Mis Alumnos     | +--------------------------------------------------------------------------+ |
-| ( ) Mis Materias    |                                                                              |
-| ( ) Mi Horario      | +--------------------------------------------------------------------------+ |
-| ( ) Asistencias     | | ESTUDIANTE       | MATERIA     | TAREA          | ESTADO      | ACCIÓN   | |
-| [*] Entregas        | |------------------+-------------+----------------+-------------+----------| |
-| ( ) Tareas          | | Juan S D         | Android     | Práctica 1     | [*] Calific.| [Editar  | |
-| ( ) Permisos        | | EST-569762-2 (1c)| Studio      | Entrega: 10 Nov|     9.5     |   nota]  | |
-|                     | |------------------+-------------+----------------+-------------+----------| |
-| ( ) Asistente IA    | | María López      | Matemáticas | Tarea 2        | (o) Pendien.| [Califi- | |
-| ( ) Configuración   | | EST-883120-1 (2a)|             | Entrega: 11 Nov|     ---     |   car]   | |
-| ( ) Modo Oscuro     | +--------------------------------------------------------------------------+ |
-| (x) Cerrar Sesión   |                                                        [Burbuja de Chat IA]  |
-|                     |   * Al pulsar "Calificar" / "Editar nota" se abre GradeDeliveryModal:        |
-|                     |     - Datos del alumno y fecha de entrega                                    |
-|                     |     - Botón para abrir/previsualizar archivo entregado                       |
-|                     |     - Puntuación (escala por estrellas y valor numérico)                     |
-|                     |     - Área de texto para comentarios y retroalimentación docente             |
-+---------------------+------------------------------------------------------------------------------+
-```
-
 ### Elementos principales de la pantalla:
 1. **Encabezado y Resumen Rápido:**
    - **Insignia identificadora:** Píldora verde esmeralda con icono de portapapeles (`ClipboardDocumentListIcon`).
