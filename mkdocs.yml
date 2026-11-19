@@ -55,6 +55,9 @@ nav:
                             - Horario: proyectos/Productos/EducheckAI/Profesor/MiHorario.md
                             - Asistencia: proyectos/Productos/EducheckAI/Profesor/Asistencias.md
                             - Entregas: proyectos/Productos/EducheckAI/Profesor/Entregas.md
+                            - Tareas: proyectos/Productos/EducheckAI/Profesor/Tareas.md
+                            - Permisos: proyectos/Productos/EducheckAI/Profesor/Permisos.md
+                            - Justificantes: proyectos/Productos/EducheckAI/Profesor/Justificantes.md
                       - Alumno:
                             - indice: proyectos/Productos/EducheckAI/Alumno/alum.md
                 - Klarify:
